@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-objectid",
+  "version": "0.5.0",
+  "description": "Node Red Node to create an ObjectID for mongodb.",
+  "keywords": [
+    "node-red",
+    "objectid",
+    "mongodb",
+	"_id"
+  ],
+  "author": "Chris",
+  "license": "MIT",
+  
+  "dependencies"  : {
+        "bson": "0.2.22"
+    },
+  
+  "repository": {
+    "type": "git",
+    "url": "url.com"
+  },  
+ 
+ "engines": {
+	  "node": "^0.12.7"
+  },
+  
+  "node-red": {
+    "nodes": {
+        "objectid": "objectid.js"
+    }
+  }
+}

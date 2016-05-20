@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    RED.nodes.registerType('objectid',{
+        category: 'function',
+        color: '#3FADB5',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            return this.name||"objectid";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="objectid">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	
+	
+</script>
+
+<script type="text/x-red" data-help-name="objectid">
+    <p>This small node-red node is used to create an ObjectID for mongodb.</p></br>
+	
+	<p>Use it to query mongodb with an ObjectID. You can input a 24 char hexstring and create an ObjectID from it. 
+	The input must be passed in a msg._id element. For example: msg._id = "572dbc06f307c8682045c55c"  </p>
+	<p>If msg._id is null, a random id is created.</p>
+	
+</script>
