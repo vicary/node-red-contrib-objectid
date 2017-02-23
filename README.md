@@ -5,13 +5,11 @@ Node-Red Node to create an ObjectID for queries in mongodb
 
 This small node-red node is used to create an ObjectID for mongodb.
 
-Use it to query mongodb with an ObjectID. You can input a 24 char hexstring and create an ObjectID from it.
+The selected property in `msg` will be converted to an ObjectID, you can input a 24 char hexstring and create an ObjectID from it.
 
-The input is processed with the first match in the following order:
+For example: `msg._id = "572dbc06f307c8682045c55c"`
 
-0. If `msg._id` exists, convert it to `ObjectID`.
-0. If `msg.payload._id` exists, converted it to `ObjectID`.
-0. Otherwise generates a new `ObjectID` in `msg._id`.
+If the target property is null, a random id is created.
 
 ## License:
 __MIT:__

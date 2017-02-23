@@ -4,13 +4,20 @@ module.exports = function(RED) {
   function ObjectIdNode(config) {
     RED.nodes.createNode(this, config);
 
+    this.name = config.name;
+    this.property = config.property || 'payload';
+
     this.on('input', (msg)=> {
-      if (!msg._id && typeof msg.payload == 'object' && msg.payload._id) {
-        msg.payload._id = new ObjectID(msg.payload._id);
+      var value;
+
+      try {
+        value = RED.util.getMessageProperty(msg, this.property);
       }
-      else {
-        msg._id = new ObjectID(msg._id || null);
-      }
+      catch (e) {}
+
+      value = new ObjectID(value);
+
+      RED.util.setMessageProperty(msg, this.property, value, true);
 
       this.send(msg);
     });
