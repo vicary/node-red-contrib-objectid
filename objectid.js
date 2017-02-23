@@ -1,7 +1,7 @@
 var ObjectID = require('bson').ObjectID;
 
 module.exports = function(RED) {
-  RED.nodes.registerType('objectid', function(config) {
+  function ObjectIdNode(config) {
     RED.nodes.createNode(this, config);
 
     this.on('input', (msg)=> {
@@ -14,5 +14,7 @@ module.exports = function(RED) {
 
       this.send(msg);
     });
-  });
+  }
+
+  RED.nodes.registerType('objectid', ObjectIdNode);
 }
