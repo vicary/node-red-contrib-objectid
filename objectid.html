@@ -1,33 +1,53 @@
 <script type="text/javascript">
-    RED.nodes.registerType('objectid',{
-        category: 'function',
-        color: '#3FADB5',
-        defaults: {
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        icon: "inject.png",
-        label: function() {
-            return this.name||"objectid";
-        }
-    });
+  RED.nodes.registerType('objectid',{
+    category: 'function',
+    color: '#3FADB5',
+    defaults: {
+      name: { value: "" },
+      property: { value: "payload", validate: RED.validators.typedInput('propertyType') },
+      propertyType: { value: "msg" }
+    },
+    inputs:1,
+    outputs:1,
+    icon: "inject.png",
+    label: function() {
+      return this.name || `objectid: ${this.propertyType}.${this.property}`;
+    },
+    oneditprepare: function() {
+      var node = this;
+
+      $("#node-input-property").typedInput({
+        default: this.propertyType || 'msg',
+        types: [ 'msg' ]
+      });
+    },
+    oneditsave: function() {
+      this.propertyType = $("#node-input-property").typedInput('type');
+      // note; Not sure how to force a default, put aside for now.
+      // this.property = this.property || 'payload';
+    }
+  });
 </script>
 
 <script type="text/x-red" data-template-name="objectid">
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-	</div>
-	
-	
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-property"><i class="fa fa-list"></i> Property</label>
+    <input type="text" id="node-input-property" />
+  </div>
 </script>
 
 <script type="text/x-red" data-help-name="objectid">
-    <p>This small node-red node is used to create an ObjectID for mongodb.</p></br>
-	
-	<p>Use it to query mongodb with an ObjectID. You can input a 24 char hexstring and create an ObjectID from it. 
-	The input must be passed in a msg._id element. For example: msg._id = "572dbc06f307c8682045c55c"  </p>
-	<p>If msg._id is null, a random id is created.</p>
-	
+  <p>This small node-red node is used to create an ObjectID for mongodb.</p></br>
+
+  <p>The selected property in `msg` will be converted to an ObjectID,
+    you can input a 24 char hexstring and create an ObjectID from it.</p>
+
+  <p>For example: <code>msg._id = "572dbc06f307c8682045c55c"</code></p>
+
+  <p>If the target property is null, a random id is created.</p>
 </script>
