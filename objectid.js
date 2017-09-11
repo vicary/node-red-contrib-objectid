@@ -7,7 +7,7 @@ module.exports = function(RED) {
     this.name = config.name;
     this.property = config.property || 'payload';
 
-    this.on('input', (msg)=> {
+    this.on('input', msg=> {
       var value;
 
       try {
@@ -15,7 +15,12 @@ module.exports = function(RED) {
       }
       catch (e) {}
 
-      value = new ObjectID(value);
+      if (Array.isArray(value)) {
+        value = value.map(value=> new ObjectID(value));
+      }
+      else {
+        value = new ObjectID(value);
+      }
 
       RED.util.setMessageProperty(msg, this.property, value, true);
 
