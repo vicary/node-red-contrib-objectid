@@ -1,21 +1,22 @@
 {
-  "name": "node-red-contrib-objectid",
-  "version": "0.6.0",
+  "name": "node-red-contrib-bson",
+  "version": "1.0.0",
   "description": "Node Red Node to create an ObjectID for mongodb.",
   "keywords": [
     "node-red",
     "objectid",
     "mongodb",
+    "bson",
     "_id"
   ],
-  "author": "Chris",
+  "author": "Vicary Archangel",
   "license": "MIT",
   "dependencies": {
     "bson": "^1.0.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Chris1234567899/node-red-contrib-objectid"
+    "url": "https://github.com/vicary/node-red-contrib-objectid"
   },
   "engines": {
     "node": "^0.12.7"

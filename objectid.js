@@ -1,4 +1,4 @@
-var ObjectID = require('bson').ObjectID;
+let ObjectID = require('bson').ObjectID;
 
 module.exports = function(RED) {
   function ObjectIdNode(config) {
@@ -8,7 +8,7 @@ module.exports = function(RED) {
     this.property = config.property || 'payload';
 
     this.on('input', msg=> {
-      var value;
+      let value;
 
       try {
         value = RED.util.getMessageProperty(msg, this.property);
